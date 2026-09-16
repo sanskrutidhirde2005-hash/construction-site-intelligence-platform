@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>construction-platform Architecture Diagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #020617;
+      min-height: 100vh;
+      padding: 2rem;
+      color: white;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      margin-bottom: 2rem;
+    }
+    
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .pulse-dot {
+      width: 12px;
+      height: 12px;
+      background: #22d3ee;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    
+    .subtitle {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      margin-left: 1.75rem;
+    }
+    
+    .diagram-container {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 1rem;
+      border: 1px solid #1e293b;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+    
+    svg {
+      width: 100%;
+      min-width: 900px;
+      display: block;
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .card {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 0.75rem;
+      border: 1px solid #1e293b;
+      padding: 1.25rem;
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .card-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    
+    .card-dot.cyan { background: #22d3ee; }
+    .card-dot.emerald { background: #34d399; }
+    .card-dot.violet { background: #a78bfa; }
+    .card-dot.amber { background: #fbbf24; }
+    .card-dot.rose { background: #fb7185; }
+    
+    .card h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .card ul {
+      list-style: none;
+      color: #94a3b8;
+      font-size: 0.75rem;
+    }
+    
+    .card li {
+      margin-bottom: 0.375rem;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #475569;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-row">
+        <div class="pulse-dot"></div>
+        <h1>construction-platform Architecture</h1>
+      </div>
+      <p class="subtitle">React + Vite frontend | FastAPI + SQLite backend | PPE detection | GenAI assistant</p>
+    </div>
+
+    <!-- Main Diagram -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 1000 720">
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- ================================================================= -->
+        <!-- COMPONENTS -->
+        ================================================================= -->
+
+        <!-- External: Browser/Mobile -->
+        <rect x="40" y="80" width="140" height="50" rx="6" fill="rgba(30, 41, 59, 0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="110" y="100" fill="white" font-size="11" font-weight="600" text-anchor="middle">Users</text>
+        <text x="110" y="116" fill="#94a3b8" font-size="9" text-anchor="middle">Browser / Mobile</text>
+
+        <!-- Security / Auth -->
+        <rect x="40" y="200" width="140" height="55" rx="6" fill="rgba(136, 19, 55, 0.4)" stroke="#fb7185" stroke-width="1.5"/>
+        <text x="110" y="228" fill="white" font-size="11" font-weight="600" text-anchor="middle">Auth Provider</text>
+        <text x="110" y="244" fill="#94a3b8" font-size="9" text-anchor="middle">HMAC-signed tokens</text>
+
+        <!-- Region Boundary -->
+        <rect x="200" y="40" width="760" height="640" rx="12" fill="rgba(251, 191, 36, 0.05)" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+        <text x="280" y="55" fill="#fbbf24" font-size="10" font-weight="600">Local Network Region</text>
+
+        <!-- Frontend (React + Vite) -->
+        <rect x="40" y="340" width="200" height="100" rx="8" fill="rgba(8, 51, 68, 0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+        <text x="140" y="370" fill="white" font-size="12" font-weight="600" text-anchor="middle">Frontend</text>
+        <text x="140" y="390" fill="#94a3b8" font-size="9" text-anchor="middle">React (JavaScript)</text>
+        <text x="140" y="410" fill="#94a3b8" font-size="9" text-anchor="middle">Vite Dev Server</text>
+        <text x="140" y="430" fill="#22d3ee" font-size="8" text-anchor="middle">localhost:5174</text>
+
+        <!-- Backend (FastAPI) -->
+        <rect x="300" y="340" width="160" height="80" rx="6" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="1.5"/>
+        <text x="380" y="370" fill="white" font-size="11" font-weight="600" text-anchor="middle">Backend</text>
+        <text x="380" y="390" fill="#94a3b8" font-size="9" text-anchor="middle">FastAPI :8000</text>
+        <text x="380" y="410" fill="#94a3b8" font-size="9" text-anchor="middle">Raw SQL · sqlite3</text>
+
+        <!-- Database -->
+        <rect x="520" y="340" width="140" height="65" rx="6" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="610" y="370" fill="white" font-size="11" font-weight="600" text-anchor="middle">Database</text>
+        <text x="610" y="390" fill="#94a3b8" font-size="9" text-anchor="middle">SQLite File DB</text>
+
+        <!-- PPE Detection Service -->
+        <rect x="300" y="480" width="180" height="65" rx="6" fill="rgba(6, 78, 59, 0.3)" stroke="#34d399" stroke-width="1.5"/>
+        <text x="390" y="505" fill="white" font-size="11" font-weight="600" text-anchor="middle">PPE Detection</text>
+        <text x="390" y="525" fill="#94a3b8" font-size="9" text-anchor="middle">YOLOv8 Inference</text>
+        <text x="390" y="545" fill="#34d399" font-size="8" text-anchor="middle">Camera / Image Input</text>
+
+        <!-- GenAI Assistant -->
+        <rect x="540" y="480" width="180" height="65" rx="6" fill="rgba(76, 29, 149, 0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="670" y="505" fill="white" font-size="11" font-weight="600" text-anchor="middle">GenAI Assistant</text>
+        <text x="670" y="525" fill="#94a3b8" font-size="9" text-anchor="middle">SQL-Grounded RAG</text>
+        <text x="670" y="545" fill="#a78bfa" font-size="8" text-anchor="middle">LLM + SQLite Context</text>
+
+        <!-- ================================================================= -->
+        <!-- ARROWS -->
+        ================================================================= -->
+
+        <!-- Users -> Auth -->
+        <line x1="180" y1="110" x2="180" y2="200" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <!-- Auth -> Frontend -->
+        <line x1="180" y1="255" x2="180" y2="340" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <!-- Frontend -> Backend -->
+        <line x1 "240" y1="400" x2="300" y2="400" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="270" y="394" fill="#94a3b8" font-size="9" text-anchor="middle">REST API</text>
+
+        <!-- Backend -> Database -->
+        <line x1="460" y1="395" x2="460" y2="340" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="470" y="389" fill="#94a3b8" font-size="9" text-anchor="middle">SQL Queries</text>
+
+        <!-- Backend -> PPE Detection -->
+        <line x1="460" y1="440" x2="300" y2="480" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="380" y="444" fill="#94a3b8" font-size="9" text-anchor="middle">Image Request</text>
+
+        <!-- Backend -> GenAI Assistant -->
+        <line x1="460" y1="520" x2="540" y2="520" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="500" y="524" fill="#94a3b8" font-size="9" text-anchor="middle">SQL Context</text>
+
+        <!-- PPE Detection -> GenAI Assistant (implied connection) -->
+        <line x1="480" y1="545" x2="540" y2="545" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="510" y="549" fill="#94a3b8" font-size="8" text-anchor="middle">PPE Data</text>
+
+        <!-- ================================================================= -->
+        <!-- LEGEND -->
+        ================================================================= -->
+        <text x="760" y="70" fill="white" font-size="10" font-weight="600">Legend</text>
+
+        <rect x="760" y="82" width="16" height="10" rx="2" fill="rgba(8, 51, 68, 0.4)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="780" y="90" fill="#94a3b8" font-size="8">Frontend (React)</text>
+
+        <rect x="760" y="98" width="16" height="10" rx="2" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="1"/>
+        <text x="780" y="106" fill="#94a3b8" font-size="8">Backend (FastAPI)</text>
+
+        <rect x="760" y="114" width="16" height="10" rx="2" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="780" y="122" fill="#94a3b8" font-size="8">Database (SQLite)</text>
+
+        <rect x="760" y="130" width="16" height="10" rx="2" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1"/>
+        <text x="780" y="138" fill="#94a3b8" font-size="8">Services (YOLO, GenAI)</text>
+
+        <line x1="760" y1="150" x2="774" y2="150" stroke="#fb7185" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="780" y="153" fill="#94a3b8" font-size="8">Auth Flow</text>
+
+        <rect x="760" y="162" width="16" height="10" rx="2" fill="transparent" stroke="#fb7185" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="780" y="170" fill="#94a3b8" font-size="8">Security Group</text>
+
+        <!-- CRLF-safe note -->
+        <text x="760" y="180" fill="#64748b" font-size="8">Note: os.path.join only, CRLF-safe</text>
+      </svg>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot cyan"></div>
+          <h3>Frontend</h3>
+        </div>
+        <ul>
+          <li>• React 19 (JavaScript)</li>
+          <li>• Vite dev server</li>
+          <li>• localhost:5174</li>
+          <li>• Module-based</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot emerald"></div>
+          <h3>Backend</h3>
+        </div>
+        <ul>
+          <li>• FastAPI :8000</li>
+          <li>• Raw SQL (sqlite3)</li>
+          <li>• SQLite file DB</li>
+          <li>• auto-generated docs</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot violet"></div>
+          <h3>Services</h3>
+        </div>
+        <ul>
+          <li>• YOLOv8 PPE detection</li>
+          <li>• SQL-grounded GenAI</li>
+          <li>• Real-time inference</li>
+          <li>• REST endpoints</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <p class="footer">
+      construction-platform • React19 + Vite • FastAPI + SQLite
+    </p>
+  </div>
+</body>
+</html>

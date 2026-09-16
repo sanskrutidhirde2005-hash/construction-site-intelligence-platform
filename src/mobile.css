@@ -1,0 +1,294 @@
+/* ============================================================
+   BuildSafe — Mobile override layer (demo on phones)
+   Loaded last; `body`-prefixed selectors outrank base rules
+   regardless of stylesheet order. Breakpoint: 640px phones,
+   with a 400px pass for very small devices.
+   ============================================================ */
+
+/* ---------- Global safety: never scroll sideways ---------- */
+html,
+body {
+  overflow-x: clip;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- App shell ---------- */
+@media (max-width: 640px) {
+  body .main-content {
+    padding: 16px;
+  }
+
+  body .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  body .topbar h1 {
+    font-size: 1.375rem;
+  }
+
+  body .user-area {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  /* Compact 2-up stats instead of 5 stacked cards */
+  body .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  body .stat-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  body .stat-card h2 {
+    font-size: 1.25rem;
+  }
+
+  body .panel {
+    padding: 18px;
+  }
+
+  body .dashboard-grid,
+  body .bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  body .ai-button {
+    align-self: stretch;
+  }
+
+  /* ---------- Page containers ---------- */
+  body .projects-page,
+  body .project-details-page,
+  body .progress-page,
+  body .daily-updates-page,
+  body .safety-page,
+  body .reports-page,
+  body .materials-page,
+  body .genai-page,
+  body .inspections-page,
+  body .documents-page,
+  body .sitevision-page {
+    padding: 16px;
+  }
+
+  /* ---------- Page headers: wrap, never overflow ---------- */
+  body .projects-heading,
+  body .daily-header,
+  body .progress-header,
+  body .details-header,
+  body .safety-header,
+  body .materials-header,
+  body .report-header,
+  body .documents-header,
+  body .sitevision-header,
+  body .genai-header,
+  body .reports-header,
+  body .project-hero,
+  body .report-hero,
+  body .progress-card-title,
+  body .modal-actions,
+  body .report-footer,
+  body .analysis-footer {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  body .projects-heading h1,
+  body .daily-header h1,
+  body .reports-header h1,
+  body .genai-header h1,
+  body .sitevision-header h1 {
+    font-size: 1.375rem;
+  }
+
+  body .reports-header-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* ---------- Grids: content stacks, stats stay compact ---------- */
+  body .projects-grid,
+  body .trio-grid,
+  body .duo-grid,
+  body .past-project-grid,
+  body .project-modules,
+  body .maintenance-detail-grid,
+  body .risk-detail-grid,
+  body .estimate-main,
+  body .breakdown-list,
+  body .inspection-box,
+  body .overview-grid,
+  body .generated-summary,
+  body .document-form,
+  body .material-form,
+  body .safety-form,
+  body .inspection-form-grid,
+  body .issue-form,
+  body .document-toolbar,
+  body .budget-form-grid,
+  body .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body .project-summary,
+  body .daily-summary,
+  body .progress-summary,
+  body .maintenance-summary,
+  body .risk-summary-grid,
+  body .sitevision-analysis-grid,
+  body .genai-intelligence,
+  body .genai-report-grid,
+  body .report-kpi-grid,
+  body .report-grid,
+  body .inspection-summary,
+  body .materials-summary,
+  body .safety-summary,
+  body .documents-summary,
+  body .ai-context-card,
+  body .quick-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  /* ---------- Filter bars stack full-width ---------- */
+  body .daily-filter-bar,
+  body .project-filter,
+  body .risk-filter-row,
+  body .document-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body .date-filter input,
+  body .project-filter-select select,
+  body .filter-search,
+  body .status-filter,
+  body .safety-search,
+  body .material-search,
+  body .inspection-search,
+  body .report-select {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  /* ---------- Toolbars & action rows ---------- */
+  body .document-actions,
+  body .safety-form-actions,
+  body .document-form-actions,
+  body .form-actions,
+  body .details-actions,
+  body .tasks-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- Reports visuals ---------- */
+  body .donut-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  body .ai-risk-section {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  body .report-modal {
+    margin: 12px;
+    max-height: 92dvh;
+    overflow-y: auto;
+  }
+
+  /* ---------- Chat ---------- */
+  body .message-bubble {
+    max-width: 88%;
+  }
+
+  body .chat-messages {
+    padding: 16px;
+    min-height: 50dvh;
+  }
+
+  /* ---------- Modals: edge padding + breathing room on phones ---------- */
+  body .project-form-overlay,
+  body .daily-form-overlay,
+  body .maintenance-modal-overlay,
+  body .risk-modal-overlay {
+    padding: 12px;
+  }
+
+  body .project-form,
+  body .maintenance-modal {
+    padding: 20px;
+  }
+
+  /* ---------- Phase 16: heatmap + toasts on phones ---------- */
+  body .heat-floor {
+    align-items: flex-start;
+  }
+
+  body .heat-floor-name {
+    min-width: 0;
+  }
+
+  body .toast-host {
+    bottom: 12px;
+  }
+
+  /* ---------- Cards breathe less ---------- */
+  body .safety-card,
+  body .materials-card,
+  body .inspection-card,
+  body .ai-suggestions,
+  body .report-section,
+  body .overall-progress-card {
+    padding: 18px;
+  }
+
+  body .hero-meta {
+    gap: 16px;
+  }
+}
+
+/* ---------- Very small phones (≤400px) ---------- */
+@media (max-width: 400px) {
+  body .stats-grid,
+  body .project-summary,
+  body .daily-summary,
+  body .progress-summary,
+  body .maintenance-summary,
+  body .risk-summary-grid,
+  body .report-kpi-grid,
+  body .report-grid,
+  body .inspection-summary,
+  body .materials-summary,
+  body .safety-summary,
+  body .documents-summary,
+  body .ai-context-card {
+    grid-template-columns: 1fr;
+  }
+
+  body .login-card {
+    padding: 20px;
+  }
+
+  body .info-content h1 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,345 @@
+/* ============================================================
+   BuildSafe — Tactile layer (reference: hard bottom lip)
+   Cards sit ON the page with a 3px darker lip.
+   Buttons press IN: hover lifts, active sinks.
+   Loaded last so it wins. Respects 1px radius + reduced motion.
+   ============================================================ */
+
+/* ---------- Cards: enforce border + hard lip ---------- */
+.stat-card,
+.panel,
+.safety-card,
+.safety-stat,
+.materials-card,
+.material-stat,
+.inspection-card,
+.inspection-stat,
+.report-section,
+.report-kpi-card,
+.overview-item,
+.documents-card,
+.document-stat,
+.sitevision-card,
+.ai-suggestions,
+.ai-context-card,
+.chat-container,
+.overall-progress-card,
+.project-card,
+.daily-card,
+.progress-card,
+.maintenance-card,
+.genai-card,
+.risk-summary-card {
+  border: 1px solid var(--color-border-strong) !important;
+  box-shadow: 0 3px 0 var(--color-border-strong) !important;
+}
+
+/* Colored status wells get a matching darker lip (like ref image) */
+.live-badge,
+.safety-status,
+.material-status,
+.check-result,
+.severity-badge,
+.priority-badge,
+.medium-risk,
+.issue-count,
+.report-id {
+  box-shadow: 0 2px 0 rgba(28, 25, 23, 0.28) !important;
+}
+
+/* Dark panels keep a black lip + yellow edge so depth reads */
+.ai-risk-section,
+.login-info-panel,
+.sidebar {
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ---------- Buttons: tactile press physics ---------- */
+.create-project-btn,
+.generate-report-btn,
+.primary-btn,
+.save-btn,
+.ai-button,
+.login-button,
+.analyze-ai-btn,
+.calculate-budget-btn,
+.view-project-btn,
+.view-report-btn,
+.demo-button {
+  border: 1px solid #78350f !important;
+  box-shadow: var(--shadow-btn) !important;
+  transform: translateY(0);
+  transition:
+    transform var(--duration-instant) var(--ease-out),
+    box-shadow var(--duration-instant) var(--ease-out),
+    background var(--duration-fast) var(--ease-out) !important;
+}
+
+.create-project-btn:hover,
+.generate-report-btn:hover,
+.primary-btn:hover,
+.save-btn:hover,
+.ai-button:hover,
+.login-button:hover,
+.analyze-ai-btn:hover,
+.calculate-budget-btn:hover,
+.view-project-btn:hover,
+.view-report-btn:hover,
+.demo-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #78350f !important;
+}
+
+.create-project-btn:active,
+.generate-report-btn:active,
+.primary-btn:active,
+.save-btn:active,
+.ai-button:active,
+.login-button:active,
+.analyze-ai-btn:active,
+.calculate-budget-btn:active,
+.view-project-btn:active,
+.view-report-btn:active,
+.demo-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #78350f !important;
+}
+
+/* Secondary / outline buttons press against sand */
+.cancel-btn,
+.secondary-btn,
+.outline-btn,
+.google-button,
+.back-project-btn,
+.change-image-btn,
+.close-document-btn {
+  border: 1px solid var(--color-border-strong) !important;
+  box-shadow: 0 3px 0 var(--color-border-strong) !important;
+  transition:
+    transform var(--duration-instant) var(--ease-out),
+    box-shadow var(--duration-instant) var(--ease-out) !important;
+}
+
+.cancel-btn:active,
+.secondary-btn:active,
+.outline-btn:active,
+.google-button:active,
+.back-project-btn:active,
+.change-image-btn:active,
+.close-document-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--color-border-strong) !important;
+}
+
+/* Stat cards lift slightly on hover — feels pick-up-able on demo */
+.stat-card,
+.safety-stat,
+.material-stat,
+.inspection-stat,
+.document-stat,
+.report-kpi-card {
+  transition: transform var(--duration-instant) var(--ease-out);
+}
+
+.stat-card:hover,
+.safety-stat:hover,
+.material-stat:hover,
+.inspection-stat:hover,
+.document-stat:hover,
+.report-kpi-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Modals float above everything: lip + soft depth */
+.project-form-overlay > div,
+.daily-form-overlay > div,
+.maintenance-modal,
+.risk-modal,
+.report-modal,
+.inspection-camera-modal {
+  border: 1px solid var(--color-border-strong) !important;
+  box-shadow: var(--shadow-modal) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .create-project-btn,
+  .generate-report-btn,
+  .primary-btn,
+  .save-btn,
+  .ai-button,
+  .login-button,
+  .stat-card {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---------- GenAI icon sizing (inline SVG needs explicit size) ---------- */
+.genai-page svg {
+  flex-shrink: 0;
+}
+
+.genai-title,
+.genai-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.genai-title svg {
+  width: 26px;
+  height: 26px;
+}
+
+.genai-subtitle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.genai-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.genai-back-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.genai-action-buttons button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.genai-action-buttons button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.genai-avatar svg {
+  width: 20px;
+  height: 20px;
+}
+
+.bot-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.message-avatar svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ai-capabilities div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ai-capabilities div svg {
+  width: 14px;
+  height: 14px;
+}
+
+.genai-suggestion,
+.ai-disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.genai-suggestion svg,
+.ai-disclaimer svg {
+  width: 14px;
+  height: 14px;
+}
+
+.genai-mic-btn svg,
+.genai-send-btn svg,
+.chat-input-area button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.genai-mic-btn,
+.genai-send-btn,
+.chat-input-area button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Conversation history bar ---------- */
+.genai-convo-bar {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.genai-convo-bar select {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: var(--text-small);
+  font-weight: 600;
+  box-shadow: 0 3px 0 var(--color-border-strong);
+}
+
+.genai-new-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border: 1px solid #78350f;
+  border-radius: var(--radius-sm);
+  background: var(--color-action);
+  color: #fff;
+  font: inherit;
+  font-size: var(--text-small);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  white-space: nowrap;
+}
+
+.genai-new-chat-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #78350f;
+}
+
+.genai-new-chat-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.genai-del-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-danger);
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--color-border-strong);
+}
+
+.genai-del-chat-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--color-border-strong);
+}
+
+.genai-del-chat-btn svg {
+  width: 16px;
+  height: 16px;
+}

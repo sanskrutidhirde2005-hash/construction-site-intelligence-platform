@@ -1,0 +1,29 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+sqlalchemy>=2.0
+pydantic>=2.0
+python-multipart>=0.0.9
+# Pinned <5 on purpose: opencv 5.x REMOVED cv2.HOGDescriptor, which the legacy
+# fallback engine needs. Do NOT install opencv-python 5.x, and do NOT mix
+# opencv-python with opencv-python-headless (they overwrite each other).
+opencv-python-headless>=4.14,<5
+numpy>=1.26
+python-dotenv>=1.0
+# Offline speech-to-text for /api/stt/transcribe (CPU, no API key).
+# Optional but recommended: without it AND without OPENAI_API_KEY,
+# server transcription answers 501. WHISPER_MODEL env picks size.
+faster-whisper>=1.0
+# --- BuildSafe Vision (YOLOv8 + OpenCV) ---
+# CPU laptop default. For CUDA servers: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# Order matters on CPU hosts: install torch (+torchvision, same build) from
+# the CPU index FIRST, then ultralytics — and never let pip pull
+# opencv-python (GUI) alongside opencv-python-headless, it upgrades to 5.x
+# and kills HOG. torchvision is a hard dep (YOLO NMS) and must match the
+# torch build (+cpu with +cpu).
+ultralytics>=8.0
+torch>=2.0
+torchvision>=0.29
+onnxruntime>=1.17
+# supervision is optional (ByteTrack helpers / track smoothing). Keep commented
+# if install weight matters:
+# supervision>=0.22
